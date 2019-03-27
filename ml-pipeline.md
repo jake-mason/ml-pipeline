@@ -97,21 +97,18 @@ continuous_columns = [
 categorical_transformer = OneHotEncoder(sparse=False, handle_unknown='ignore')
 continuous_transformer = 'passthrough'
 
-column_transformer = ColumnTransformer(
+original_transformer = ColumnTransformer(
 	[
 		('categorical', categorical_transformer, categorical_columns),
 		('continuous', continuous_transformer, continuous_columns),
 	]
-	,
-	sparse_threshold=0.,
-	n_jobs=-1
 )
 ```
 
 Let's see how it works!
 
 ```python
-column_transformer.fit_transform(df)
+original_transformer.fit_transform(df)
 array([[1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 1., 0.],
        [0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 0., 2., 1.],
        [1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 3., 1.],
@@ -138,7 +135,7 @@ score_df = pd.DataFrame(
 for col in score_df.select_dtypes('object'):
 	score_df[col] = score_df[col].astype(str)
 
-column_transformer.transform(score_df)
+original_transformer.transform(score_df)
 # array([[1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 1., 0.],
 #        [0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 0., 2., 1.],
 #        [0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 3., 1.],
@@ -152,24 +149,21 @@ Notice how the transformer ignores the new categories and values, because we spe
 categorical_transformer = OneHotEncoder(sparse=False, handle_unknown='error')
 continuous_transformer = 'passthrough'
 
-column_transformer = ColumnTransformer(
+monitoring_transformer = ColumnTransformer(
 	[
 		('categorical', categorical_transformer, categorical_columns),
 		('continuous', continuous_transformer, continuous_columns),
 	]
-	,
-	sparse_threshold=0.,
-	n_jobs=-1
 )
 
-column_transformer.fit_transform(df)
+monitoring_transformer.fit(df)
 # array([[1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 1., 0.],
 #        [0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 0., 2., 1.],
 #        [1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 3., 1.],
 #        [0., 0., 0., 1., 0., 0., 0., 1., 0., 0., 1., 4., 0.],
 #        [0., 0., 1., 0., 0., 0., 0., 0., 1., 0., 1., 5., 1.]])
 
-column_transformer.transform(score_df)
+monitoring_transformer.transform(score_df)
 ```
 
 The follow `ValueError` should have been raised:
@@ -187,9 +181,9 @@ We should be able to save this transformer for use in production, just like we w
 ```python
 import pickle
 
-pickle.dump(column_transformer, open('column_transformer.pkl', 'wb'))
+pickle.dump(original_transformer, open('original_transformer.pkl', 'wb'))
 
-loaded_column_transformer = pickle.load(open('column_transformer.pkl', 'rb'))
+loaded_column_transformer = pickle.load(open('original_transformer.pkl', 'rb'))
 loaded_column_transformer.transform(score_df)
 # array([[1., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 1., 0.],
 #        [0., 1., 0., 0., 0., 1., 0., 0., 0., 1., 0., 2., 1.],
@@ -212,7 +206,7 @@ class PassthroughTransformer(BaseEstimator, TransformerMixin):
     def get_feature_names(self):
         return self.feature_names
 
-categorical_transformer = OneHotEncoder(sparse=False, handle_unknown='error')
+categorical_transformer = OneHotEncoder(sparse=False, handle_unknown='ignore')
 continuous_transformer = PassthroughTransformer()
 
 column_transformer = ColumnTransformer(
@@ -220,9 +214,6 @@ column_transformer = ColumnTransformer(
 		('categorical', categorical_transformer, categorical_columns),
 		('continuous', continuous_transformer, continuous_columns),
 	]
-	,
-	sparse_threshold=0.,
-	n_jobs=-1
 )
 
 column_transformer.fit_transform(df)
