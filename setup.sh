@@ -16,4 +16,6 @@ source venv/bin/activate
 pip3 install -r requirements.txt --no-cache-dir
 
 # Finally, make available to our Jupyter environment the virtualenv we just created
+# and start the notebook
 ipython kernel install --user --name=venv
+jupyter notebook
