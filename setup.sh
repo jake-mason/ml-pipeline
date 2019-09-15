@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # First, obtain the dataset from the UCI machine learning repository
-base_url=https://archive.ics.uci.edu/ml/machine-learning-databases/car
-for asset in car.names car.data;
+base_url=https://archive.ics.uci.edu/ml/machine-learning-databases/adult
+for asset in adult.names adult.data;
 	do
 		full_url=$base_url/$asset
 		wget -q -O data/$asset $full_url
