@@ -13111,7 +13111,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -13157,7 +13157,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Shape of dataset: </span><span class="si">{df.shape}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -13167,6 +13167,73 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of dataset: (32561, 15)
+Data sample:
+   age          workclass  fnlwgt   education  education-num  \
+0   39          State-gov   77516   Bachelors             13   
+1   50   Self-emp-not-inc   83311   Bachelors             13   
+2   38            Private  215646     HS-grad              9   
+3   53            Private  234721        11th              7   
+4   28            Private  338409   Bachelors             13   
+
+        marital-status          occupation    relationship    race      sex  \
+0        Never-married        Adm-clerical   Not-in-family   White     Male   
+1   Married-civ-spouse     Exec-managerial         Husband   White     Male   
+2             Divorced   Handlers-cleaners   Not-in-family   White     Male   
+3   Married-civ-spouse   Handlers-cleaners         Husband   Black     Male   
+4   Married-civ-spouse      Prof-specialty            Wife   Black   Female   
+
+   capital-gain  capital-loss  hours-per  native-country makes_gt_50k  
+0          2174             0         40   United-States        &lt;=50K  
+1             0             0         13   United-States        &lt;=50K  
+2             0             0         40   United-States        &lt;=50K  
+3             0             0         40   United-States        &lt;=50K  
+4             0             0         40            Cuba        &lt;=50K  
+Data types:
+age                int64
+workclass         object
+fnlwgt             int64
+education         object
+education-num      int64
+marital-status    object
+occupation        object
+relationship      object
+race              object
+sex               object
+capital-gain       int64
+capital-loss       int64
+hours-per          int64
+native-country    object
+makes_gt_50k      object
+dtype: object
+Number of unique values by field, for non-numeric features:
+workclass          9
+education         16
+marital-status     7
+occupation        15
+relationship       6
+race               5
+sex                2
+native-country    42
+makes_gt_50k       2
+dtype: int64
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13202,7 +13269,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Original column:</span><span class="se">\n</span><span class="s2">{df[&#39;sex&#39;].head(10)}&quot;</span><span class="p">)</span>
@@ -13210,6 +13277,47 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Original column:
+0       Male
+1       Male
+2       Male
+3       Male
+4     Female
+5     Female
+6     Female
+7       Male
+8     Female
+9       Male
+Name: sex, dtype: object
+That same column, one-hot-encoded:
+   sex_ Female  sex_ Male
+0            0          1
+1            0          1
+2            0          1
+3            0          1
+4            1          0
+5            1          0
+6            1          0
+7            0          1
+8            1          0
+9            0          1
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13224,7 +13332,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">OneHotEncoder</span>
@@ -13235,6 +13343,34 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>That same column, one-hot-encoded:
+[[0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [0. 1.]
+ [1. 0.]
+ [1. 0.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13263,7 +13399,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="k">import</span> <span class="n">ColumnTransformer</span>
@@ -13275,6 +13411,35 @@ This estimator allows different columns or column subsets of the input to be tra
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0., 1.],
+       [0., 1.],
+       [0., 1.],
+       [0., 1.],
+       [1., 0.],
+       [1., 0.],
+       [1., 0.],
+       [0., 1.],
+       [1., 0.],
+       [0., 1.]])</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13301,7 +13466,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span>
@@ -13344,6 +13509,32 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[ 0.,  1.,  0., ...,  0.,  1., 39.],
+       [ 0.,  1.,  0., ...,  0.,  1., 50.],
+       [ 0.,  1.,  0., ...,  0.,  1., 38.],
+       ...,
+       [ 1.,  0.,  0., ...,  0.,  1., 58.],
+       [ 0.,  1.,  0., ...,  0.,  1., 22.],
+       [ 1.,  0.,  0., ...,  0.,  1., 52.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13358,13 +13549,43 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">master_trans</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-d91e9be7d35f&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>master_trans<span class="ansi-blue-fg">.</span>get_feature_names<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ansi-cyan-fg">get_feature_names</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    332</span>             <span class="ansi-green-fg">elif</span> trans <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#39;passthrough&#39;</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    333</span>                 raise NotImplementedError(
+<span class="ansi-green-fg">--&gt; 334</span><span class="ansi-red-fg">                     </span><span class="ansi-blue-fg">&#34;get_feature_names is not yet supported when using &#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">    335</span>                     &#34;a &#39;passthrough&#39; transformer.&#34;)
+<span class="ansi-green-intense-fg ansi-bold">    336</span>             <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> hasattr<span class="ansi-blue-fg">(</span>trans<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;get_feature_names&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">NotImplementedError</span>: get_feature_names is not yet supported when using a &#39;passthrough&#39; transformer.</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13381,7 +13602,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="k">import</span> <span class="n">SimpleImputer</span>
@@ -13416,7 +13637,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">transformers</span> <span class="o">=</span> <span class="p">[]</span>
@@ -13444,6 +13665,32 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[ 0.,  1.,  0., ...,  0.,  1., 39.],
+       [ 0.,  1.,  0., ...,  0.,  1., 50.],
+       [ 0.,  1.,  0., ...,  0.,  1., 38.],
+       ...,
+       [ 1.,  0.,  0., ...,  0.,  1., 58.],
+       [ 0.,  1.,  0., ...,  0.,  1., 22.],
+       [ 1.,  0.,  0., ...,  0.,  1., 52.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13455,13 +13702,40 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;sex__x0_ Female&#39;,
+ &#39;sex__x0_ Male&#39;,
+ &#39;race__x0_ Amer-Indian-Eskimo&#39;,
+ &#39;race__x0_ Asian-Pac-Islander&#39;,
+ &#39;race__x0_ Black&#39;,
+ &#39;race__x0_ Other&#39;,
+ &#39;race__x0_ White&#39;,
+ &#39;age__age&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -13477,7 +13751,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span>
@@ -13564,7 +13838,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">strategy_handler</span><span class="p">(</span>
@@ -13587,8 +13861,8 @@ This estimator allows different columns or column subsets of the input to be tra
                 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;strategy&#39;</span><span class="p">:</span> <span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="s1">&#39;fill_value&#39;</span><span class="p">:</span> <span class="n">fill_value</span><span class="p">}</span>
             <span class="k">return</span> <span class="n">SimpleImputerWithFeatureNames</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Kind &quot;</span><span class="si">{}</span><span class="s1">&quot; invalid. Try &quot;continuous&quot; or &quot;categorical&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kind</span><span class="p">))</span>
-        
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Kind &quot;</span><span class="si">{kind}</span><span class="s1">&quot; invalid. Try &quot;continuous&quot; or &quot;categorical&quot;&#39;</span><span class="p">)</span>
+
 <span class="k">def</span> <span class="nf">build_transformer</span><span class="p">(</span><span class="n">strategies</span><span class="p">,</span> <span class="n">ignore_fill_value</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39; Take entire `strategies` (see model_config.py) and create master transformer &#39;&#39;&#39;</span>
     <span class="n">transformers</span> <span class="o">=</span> <span class="p">[]</span>
@@ -13620,7 +13894,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span> <span class="o">=</span> <span class="n">build_transformer</span><span class="p">(</span>
@@ -13636,6 +13910,31 @@ This estimator allows different columns or column subsets of the input to be tra
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[39.  0.  0. ...  1.  0.  0.]
+ [50.  0.  0. ...  1.  0.  0.]
+ [38.  0.  0. ...  1.  0.  0.]
+ ...
+ [58.  0.  0. ...  1.  0.  0.]
+ [22.  0.  0. ...  1.  0.  0.]
+ [52.  0.  0. ...  1.  0.  0.]]
+[&#39;age__age&#39;, &#39;workclass__x0_ ?&#39;, &#39;workclass__x0_ Federal-gov&#39;, &#39;workclass__x0_ Local-gov&#39;, &#39;workclass__x0_ Never-worked&#39;, &#39;workclass__x0_ Private&#39;, &#39;workclass__x0_ Self-emp-inc&#39;, &#39;workclass__x0_ Self-emp-not-inc&#39;, &#39;workclass__x0_ State-gov&#39;, &#39;workclass__x0_ Without-pay&#39;, &#39;fnlwgt__fnlwgt&#39;, &#39;education-num__education-num&#39;, &#39;marital-status__x0_ Divorced&#39;, &#39;marital-status__x0_ Married-AF-spouse&#39;, &#39;marital-status__x0_ Married-civ-spouse&#39;, &#39;marital-status__x0_ Married-spouse-absent&#39;, &#39;marital-status__x0_ Never-married&#39;, &#39;marital-status__x0_ Separated&#39;, &#39;marital-status__x0_ Widowed&#39;, &#39;occupation__x0_ ?&#39;, &#39;occupation__x0_ Adm-clerical&#39;, &#39;occupation__x0_ Armed-Forces&#39;, &#39;occupation__x0_ Craft-repair&#39;, &#39;occupation__x0_ Exec-managerial&#39;, &#39;occupation__x0_ Farming-fishing&#39;, &#39;occupation__x0_ Handlers-cleaners&#39;, &#39;occupation__x0_ Machine-op-inspct&#39;, &#39;occupation__x0_ Other-service&#39;, &#39;occupation__x0_ Priv-house-serv&#39;, &#39;occupation__x0_ Prof-specialty&#39;, &#39;occupation__x0_ Protective-serv&#39;, &#39;occupation__x0_ Sales&#39;, &#39;occupation__x0_ Tech-support&#39;, &#39;occupation__x0_ Transport-moving&#39;, &#39;relationship__x0_ Husband&#39;, &#39;relationship__x0_ Not-in-family&#39;, &#39;relationship__x0_ Other-relative&#39;, &#39;relationship__x0_ Own-child&#39;, &#39;relationship__x0_ Unmarried&#39;, &#39;relationship__x0_ Wife&#39;, &#39;race__x0_ Amer-Indian-Eskimo&#39;, &#39;race__x0_ Asian-Pac-Islander&#39;, &#39;race__x0_ Black&#39;, &#39;race__x0_ Other&#39;, &#39;race__x0_ White&#39;, &#39;sex__x0_ Female&#39;, &#39;sex__x0_ Male&#39;, &#39;capital-gain__capital-gain&#39;, &#39;capital-loss__capital-loss&#39;, &#39;hours-per__hours-per&#39;, &#39;native-country__x0_ ?&#39;, &#39;native-country__x0_ Cambodia&#39;, &#39;native-country__x0_ Canada&#39;, &#39;native-country__x0_ China&#39;, &#39;native-country__x0_ Columbia&#39;, &#39;native-country__x0_ Cuba&#39;, &#39;native-country__x0_ Dominican-Republic&#39;, &#39;native-country__x0_ Ecuador&#39;, &#39;native-country__x0_ El-Salvador&#39;, &#39;native-country__x0_ England&#39;, &#39;native-country__x0_ France&#39;, &#39;native-country__x0_ Germany&#39;, &#39;native-country__x0_ Greece&#39;, &#39;native-country__x0_ Guatemala&#39;, &#39;native-country__x0_ Haiti&#39;, &#39;native-country__x0_ Holand-Netherlands&#39;, &#39;native-country__x0_ Honduras&#39;, &#39;native-country__x0_ Hong&#39;, &#39;native-country__x0_ Hungary&#39;, &#39;native-country__x0_ India&#39;, &#39;native-country__x0_ Iran&#39;, &#39;native-country__x0_ Ireland&#39;, &#39;native-country__x0_ Italy&#39;, &#39;native-country__x0_ Jamaica&#39;, &#39;native-country__x0_ Japan&#39;, &#39;native-country__x0_ Laos&#39;, &#39;native-country__x0_ Mexico&#39;, &#39;native-country__x0_ Nicaragua&#39;, &#39;native-country__x0_ Outlying-US(Guam-USVI-etc)&#39;, &#39;native-country__x0_ Peru&#39;, &#39;native-country__x0_ Philippines&#39;, &#39;native-country__x0_ Poland&#39;, &#39;native-country__x0_ Portugal&#39;, &#39;native-country__x0_ Puerto-Rico&#39;, &#39;native-country__x0_ Scotland&#39;, &#39;native-country__x0_ South&#39;, &#39;native-country__x0_ Taiwan&#39;, &#39;native-country__x0_ Thailand&#39;, &#39;native-country__x0_ Trinadad&amp;Tobago&#39;, &#39;native-country__x0_ United-States&#39;, &#39;native-country__x0_ Vietnam&#39;, &#39;native-country__x0_ Yugoslavia&#39;]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13659,7 +13958,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span> <span class="o">=</span> <span class="n">build_transformer</span><span class="p">(</span>
@@ -13684,7 +13983,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_X</span> <span class="o">=</span> <span class="n">trans</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span>
@@ -13695,6 +13994,25 @@ This estimator allows different columns or column subsets of the input to be tra
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Training dataset shape: (32561, 92)
+Testing dataset shape: (32561, 92)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13709,7 +14027,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span> <span class="o">=</span> <span class="n">build_transformer</span><span class="p">(</span>
@@ -13720,12 +14038,125 @@ This estimator allows different columns or column subsets of the input to be tra
 
 <span class="n">train_X</span> <span class="o">=</span> <span class="n">trans</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span>
 <span class="n">test_X</span> <span class="o">=</span> <span class="n">trans</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Training dataset shape: </span><span class="si">{train_X.shape}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Testing dataset shape: </span><span class="si">{test_X.shape}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-17-0f5a214ade73&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> 
+<span class="ansi-green-intense-fg ansi-bold">      7</span> train_X <span class="ansi-blue-fg">=</span> trans<span class="ansi-blue-fg">.</span>fit_transform<span class="ansi-blue-fg">(</span>train_df<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 8</span><span class="ansi-red-fg"> </span>test_X <span class="ansi-blue-fg">=</span> trans<span class="ansi-blue-fg">.</span>transform<span class="ansi-blue-fg">(</span>test_df<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ansi-cyan-fg">transform</span><span class="ansi-blue-fg">(self, X)</span>
+<span class="ansi-green-intense-fg ansi-bold">    493</span> 
+<span class="ansi-green-intense-fg ansi-bold">    494</span>         X <span class="ansi-blue-fg">=</span> _check_X<span class="ansi-blue-fg">(</span>X<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 495</span><span class="ansi-red-fg">         </span>Xs <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_fit_transform<span class="ansi-blue-fg">(</span>X<span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">,</span> _transform_one<span class="ansi-blue-fg">,</span> fitted<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    496</span>         self<span class="ansi-blue-fg">.</span>_validate_output<span class="ansi-blue-fg">(</span>Xs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    497</span> 
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ansi-cyan-fg">_fit_transform</span><span class="ansi-blue-fg">(self, X, y, func, fitted)</span>
+<span class="ansi-green-intense-fg ansi-bold">    391</span>                               _get_column(X, column), y, weight)
+<span class="ansi-green-intense-fg ansi-bold">    392</span>                 for _, trans, column, weight in self._iter(
+<span class="ansi-green-fg">--&gt; 393</span><span class="ansi-red-fg">                     fitted=fitted, replace_strings=True))
+</span><span class="ansi-green-intense-fg ansi-bold">    394</span>         <span class="ansi-green-fg">except</span> ValueError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    395</span>             <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">&#34;Expected 2D array, got 1D array instead&#34;</span> <span class="ansi-green-fg">in</span> str<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/externals/joblib/parallel.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, iterable)</span>
+<span class="ansi-green-intense-fg ansi-bold">    984</span>                 self<span class="ansi-blue-fg">.</span>_iterating <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_original_iterator <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span>
+<span class="ansi-green-intense-fg ansi-bold">    985</span> 
+<span class="ansi-green-fg">--&gt; 986</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">while</span> self<span class="ansi-blue-fg">.</span>dispatch_one_batch<span class="ansi-blue-fg">(</span>iterator<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    987</span>                 <span class="ansi-green-fg">pass</span>
+<span class="ansi-green-intense-fg ansi-bold">    988</span> 
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/externals/joblib/parallel.py</span> in <span class="ansi-cyan-fg">dispatch_one_batch</span><span class="ansi-blue-fg">(self, iterator)</span>
+<span class="ansi-green-intense-fg ansi-bold">    823</span>                 <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">False</span>
+<span class="ansi-green-intense-fg ansi-bold">    824</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 825</span><span class="ansi-red-fg">                 </span>self<span class="ansi-blue-fg">.</span>_dispatch<span class="ansi-blue-fg">(</span>tasks<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    826</span>                 <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">True</span>
+<span class="ansi-green-intense-fg ansi-bold">    827</span> 
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/externals/joblib/parallel.py</span> in <span class="ansi-cyan-fg">_dispatch</span><span class="ansi-blue-fg">(self, batch)</span>
+<span class="ansi-green-intense-fg ansi-bold">    780</span>         <span class="ansi-green-fg">with</span> self<span class="ansi-blue-fg">.</span>_lock<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    781</span>             job_idx <span class="ansi-blue-fg">=</span> len<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_jobs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 782</span><span class="ansi-red-fg">             </span>job <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_backend<span class="ansi-blue-fg">.</span>apply_async<span class="ansi-blue-fg">(</span>batch<span class="ansi-blue-fg">,</span> callback<span class="ansi-blue-fg">=</span>cb<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    783</span>             <span class="ansi-red-fg"># A job can complete so quickly than its callback is</span>
+<span class="ansi-green-intense-fg ansi-bold">    784</span>             <span class="ansi-red-fg"># called before we get here, causing self._jobs to</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/externals/joblib/_parallel_backends.py</span> in <span class="ansi-cyan-fg">apply_async</span><span class="ansi-blue-fg">(self, func, callback)</span>
+<span class="ansi-green-intense-fg ansi-bold">    180</span>     <span class="ansi-green-fg">def</span> apply_async<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">,</span> callback<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    181</span>         <span class="ansi-blue-fg">&#34;&#34;&#34;Schedule a func to be run&#34;&#34;&#34;</span>
+<span class="ansi-green-fg">--&gt; 182</span><span class="ansi-red-fg">         </span>result <span class="ansi-blue-fg">=</span> ImmediateResult<span class="ansi-blue-fg">(</span>func<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    183</span>         <span class="ansi-green-fg">if</span> callback<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    184</span>             callback<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/externals/joblib/_parallel_backends.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, batch)</span>
+<span class="ansi-green-intense-fg ansi-bold">    543</span>         <span class="ansi-red-fg"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="ansi-green-intense-fg ansi-bold">    544</span>         <span class="ansi-red-fg"># arguments in memory</span>
+<span class="ansi-green-fg">--&gt; 545</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>results <span class="ansi-blue-fg">=</span> batch<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    546</span> 
+<span class="ansi-green-intense-fg ansi-bold">    547</span>     <span class="ansi-green-fg">def</span> get<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/externals/joblib/parallel.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    259</span>         <span class="ansi-green-fg">with</span> parallel_backend<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_backend<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    260</span>             return [func(*args, **kwargs)
+<span class="ansi-green-fg">--&gt; 261</span><span class="ansi-red-fg">                     for func, args, kwargs in self.items]
+</span><span class="ansi-green-intense-fg ansi-bold">    262</span> 
+<span class="ansi-green-intense-fg ansi-bold">    263</span>     <span class="ansi-green-fg">def</span> __len__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/externals/joblib/parallel.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">    259</span>         <span class="ansi-green-fg">with</span> parallel_backend<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_backend<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    260</span>             return [func(*args, **kwargs)
+<span class="ansi-green-fg">--&gt; 261</span><span class="ansi-red-fg">                     for func, args, kwargs in self.items]
+</span><span class="ansi-green-intense-fg ansi-bold">    262</span> 
+<span class="ansi-green-intense-fg ansi-bold">    263</span>     <span class="ansi-green-fg">def</span> __len__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ansi-cyan-fg">_transform_one</span><span class="ansi-blue-fg">(transformer, X, y, weight, **fit_params)</span>
+<span class="ansi-green-intense-fg ansi-bold">    603</span> 
+<span class="ansi-green-intense-fg ansi-bold">    604</span> <span class="ansi-green-fg">def</span> _transform_one<span class="ansi-blue-fg">(</span>transformer<span class="ansi-blue-fg">,</span> X<span class="ansi-blue-fg">,</span> y<span class="ansi-blue-fg">,</span> weight<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>fit_params<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 605</span><span class="ansi-red-fg">     </span>res <span class="ansi-blue-fg">=</span> transformer<span class="ansi-blue-fg">.</span>transform<span class="ansi-blue-fg">(</span>X<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    606</span>     <span class="ansi-red-fg"># if we have a weight for this transformer, multiply output</span>
+<span class="ansi-green-intense-fg ansi-bold">    607</span>     <span class="ansi-green-fg">if</span> weight <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/preprocessing/_encoders.py</span> in <span class="ansi-cyan-fg">transform</span><span class="ansi-blue-fg">(self, X)</span>
+<span class="ansi-green-intense-fg ansi-bold">    589</span>                                        copy=True)
+<span class="ansi-green-intense-fg ansi-bold">    590</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 591</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_transform_new<span class="ansi-blue-fg">(</span>X<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    592</span> 
+<span class="ansi-green-intense-fg ansi-bold">    593</span>     <span class="ansi-green-fg">def</span> inverse_transform<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> X<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/preprocessing/_encoders.py</span> in <span class="ansi-cyan-fg">_transform_new</span><span class="ansi-blue-fg">(self, X)</span>
+<span class="ansi-green-intense-fg ansi-bold">    551</span>         n_samples<span class="ansi-blue-fg">,</span> n_features <span class="ansi-blue-fg">=</span> X<span class="ansi-blue-fg">.</span>shape
+<span class="ansi-green-intense-fg ansi-bold">    552</span> 
+<span class="ansi-green-fg">--&gt; 553</span><span class="ansi-red-fg">         </span>X_int<span class="ansi-blue-fg">,</span> X_mask <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_transform<span class="ansi-blue-fg">(</span>X<span class="ansi-blue-fg">,</span> handle_unknown<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>handle_unknown<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    554</span> 
+<span class="ansi-green-intense-fg ansi-bold">    555</span>         mask <span class="ansi-blue-fg">=</span> X_mask<span class="ansi-blue-fg">.</span>ravel<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.7/site-packages/sklearn/preprocessing/_encoders.py</span> in <span class="ansi-cyan-fg">_transform</span><span class="ansi-blue-fg">(self, X, handle_unknown)</span>
+<span class="ansi-green-intense-fg ansi-bold">    107</span>                     msg = (&#34;Found unknown categories {0} in column {1}&#34;
+<span class="ansi-green-intense-fg ansi-bold">    108</span>                            &#34; during transform&#34;.format(diff, i))
+<span class="ansi-green-fg">--&gt; 109</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> ValueError<span class="ansi-blue-fg">(</span>msg<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    110</span>                 <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    111</span>                     <span class="ansi-red-fg"># Set the problematic rows to an acceptable value and</span>
+
+<span class="ansi-red-fg">ValueError</span>: Found unknown categories [&#39;DEFINITELY A NEVER-BEFORE-SEEN VALUE&#39;] in column 0 during transform</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13744,7 +14175,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">monitor</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">transformer</span><span class="p">):</span>
@@ -13782,7 +14213,7 @@ This estimator allows different columns or column subsets of the input to be tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Fit two effectively identical transformers to the same dataset</span>
@@ -13798,6 +14229,25 @@ This estimator allows different columns or column subsets of the input to be tra
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Found unknown categories [&#39;DEFINITELY A NEVER-BEFORE-SEEN VALUE&#39;] in column 0 during transform ... found in column &#34;[&#39;sex&#39;]&#34;
+Found unknown categories [&#39;DEFINITELY A NEVER-BEFORE-SEEN VALUE&#39;] in column 0 during transform ... found in column &#34;[&#39;native-country&#39;]&#34;
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
