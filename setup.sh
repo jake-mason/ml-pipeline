@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# First, create a virtualenv
-virtualenv venv
-source venv/bin/activate
+[[ -d venv ]] ||
+	virtualenv venv &&
+	source venv/bin/activate &&
+	pip3 install -r requirements.txt --no-cache-dir &&
+	deactivate
 
-# Next, install the required dependencies
-pip3 install -r requirements.txt --no-cache-dir
+source venv/bin/activate
 
 # Finally, make available to our Jupyter environment the virtualenv we just created
 # and start the notebook
