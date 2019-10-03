@@ -11,4 +11,3 @@ source venv/bin/activate
 # Finally, make available to our Jupyter environment the virtualenv we just created
 # and start the notebook
 ipython kernel install --user --name=venv
-jupyter notebook
