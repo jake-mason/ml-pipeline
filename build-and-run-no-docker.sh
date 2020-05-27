@@ -1,18 +1,5 @@
 #!/bin/bash
 
-# For MacOS
-# Installs Homebrew, Python, and related packages
-
-# Grab Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >> ~/.profile
-brew install python
-
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3 get-pip.py
-
-pip3 install virtualenv
-
 [[ -d venv ]] ||
 	virtualenv venv &&
 	source venv/bin/activate &&
